@@ -8,8 +8,6 @@ using namespace engine;
 using namespace engine::math;
 using namespace engine::window;
 
-#define GLEW_STATIC
-
 void main() 
 {
 	Vector2 v1 = Vector2(1, 1);

@@ -78,7 +78,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -119,10 +119,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\data\ContentManager.h" />
+    <ClInclude Include="src\graphics\shader\Shader.h" />
     <ClInclude Include="src\math\Vector2.h" />
     <ClInclude Include="src\window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CONTENTMANAGER.CPP" />
+    <ClCompile Include="src\core\data\ContentManager.cpp" />
+    <ClCompile Include="src\graphics\shader\Shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Vector2.cpp" />
     <ClCompile Include="src\window\Window.cpp" />
