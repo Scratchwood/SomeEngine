@@ -125,7 +125,6 @@
     <ClInclude Include="src\window\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CONTENTMANAGER.CPP" />
     <ClCompile Include="src\core\data\ContentManager.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />
     <ClCompile Include="src\main.cpp" />

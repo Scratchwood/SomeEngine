@@ -44,8 +44,5 @@
     <ClCompile Include="src\core\data\ContentManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CONTENTMANAGER.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
