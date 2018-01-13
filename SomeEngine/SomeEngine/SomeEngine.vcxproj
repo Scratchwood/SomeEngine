@@ -80,6 +80,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -123,6 +124,7 @@
     <ClInclude Include="src\graphics\shader\Shader.h" />
     <ClInclude Include="src\math\Vector2.h" />
     <ClInclude Include="src\window\Window.h" />
+    <ClInclude Include="src\math\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CONTENTMANAGER.CPP" />
@@ -131,6 +133,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Vector2.cpp" />
     <ClCompile Include="src\window\Window.cpp" />
+    <ClCompile Include="src\math\Vector3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

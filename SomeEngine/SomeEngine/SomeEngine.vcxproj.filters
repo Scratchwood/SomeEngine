@@ -27,6 +27,9 @@
     <ClInclude Include="src\core\data\ContentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\math\Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\math\Vector2.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CONTENTMANAGER.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
