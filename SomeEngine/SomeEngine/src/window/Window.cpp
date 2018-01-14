@@ -63,7 +63,7 @@ bool engine::window::Window::initialize()
 	glDebugMessageCallback(openglCallbackFunction, nullptr);
 	GLuint unusedIds = 0;
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE,	0, &unusedIds, true);
-	glClearColor(0.2f, 0.7f, 0.5f, 1.0f);
+	glClearColor(0.39f, 0.58f, 0.92f, 1.0f);
 	return true;
 }
 
