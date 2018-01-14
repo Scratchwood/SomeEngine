@@ -18,6 +18,7 @@ namespace engine::graphics
 
 	public:
 		Shader();
+		Shader(std::string fragSource, std::string vertSource);
 		Shader(unsigned int id, unsigned int vertexId, unsigned int fragmentId);
 
 		void enable() const;
@@ -36,5 +37,6 @@ namespace engine::graphics
 
 	private:
 		unsigned int getLocation(const std::string& name);
+		const unsigned int compileShader(unsigned int shader, std::string & src, unsigned int programId);
 	};
 }

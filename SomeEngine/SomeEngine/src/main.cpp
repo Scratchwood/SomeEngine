@@ -27,8 +27,8 @@ void main()
 	std::string name = "SomeEngine";
 	Window w = Window(name, 800, 600);
 	ContentManager cm = ContentManager();
-	auto shader = cm.loadShader("resources/shaders/basic.frag", "resources/shaders/basic.vert");
-
+	auto shader = cm.load<Shader>("resources/shaders/basic.frag", "resources/shaders/basic.vert");
+	auto string = cm.load<std::string>("resources/shaders/basic.frag");
 	while (!w.isClosed())
 	{
 		w.clear();
