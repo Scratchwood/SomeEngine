@@ -48,6 +48,16 @@ void engine::graphics::Shader::setUniform(const std::string & name, const engine
 	glUniform2f(getLocation(name), value.x, value.y);
 }
 
+void engine::graphics::Shader::setUniform(const std::string & name, const engine::math::Vector3 & value)
+{
+	glUniform3f(getLocation(name), value.x, value.y, value.z);
+}
+
+void engine::graphics::Shader::setUniform(const std::string & name, const engine::math::Vector4 & value)
+{
+	glUniform4f(getLocation(name), value.x, value.y, value.z, value.w);
+}
+
 unsigned int engine::graphics::Shader::getLocation(const std::string & name)
 {
 	// since glGetUniformLocation is rather slow we cache it

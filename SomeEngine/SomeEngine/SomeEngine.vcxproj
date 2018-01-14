@@ -125,6 +125,7 @@
     <ClInclude Include="src\math\Vector2.h" />
     <ClInclude Include="src\window\Window.h" />
     <ClInclude Include="src\math\Vector3.h" />
+    <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\data\ContentManager.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="src\math\Vector2.cpp" />
     <ClCompile Include="src\window\Window.cpp" />
     <ClCompile Include="src\math\Vector3.cpp" />
+    <ClCompile Include="Vector4.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
