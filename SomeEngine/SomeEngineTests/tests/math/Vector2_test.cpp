@@ -3,7 +3,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace SomeEngineTests
 {
-	TEST_CLASS(Vector2)
+	TEST_CLASS(Vector2_test)
 	{
 	public:
 

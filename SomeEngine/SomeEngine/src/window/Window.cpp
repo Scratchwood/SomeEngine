@@ -24,11 +24,6 @@ void engine::window::Window::clear() const
 
 void engine::window::Window::update()
 {
-	GLenum error = glGetError();
-	if (error != GL_NO_ERROR) {
-		std::cout << "GL ERROR: " << error << std::endl;
-		getDebugMessages(1);
-	}
 	glfwPollEvents();
 	glfwSwapBuffers(m_Window);
 }
@@ -40,6 +35,7 @@ bool engine::window::Window::initialize()
 		std::cout << "failed to initiate glfw" << std::endl;
 		return false;
 	}
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // add toggle for non-debug..
 	m_Window = glfwCreateWindow(m_Width, m_Height, m_Name.c_str(), NULL, NULL);
 	if (!m_Window)
 	{
@@ -63,44 +59,57 @@ bool engine::window::Window::initialize()
 	// gl options
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	glEnable(GL_DEBUG_OUTPUT);
+	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	glDebugMessageCallback(openglCallbackFunction, nullptr);
+	GLuint unusedIds = 0;
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE,	0, &unusedIds, true);
 	glClearColor(0.2f, 0.7f, 0.5f, 1.0f);
 	return true;
 }
 
-void engine::window::Window::getDebugMessages(GLuint count)
+void APIENTRY engine::window::openglCallbackFunction(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
 {
-	GLint maxMsgLen = 0;
-	glGetIntegerv(GL_MAX_DEBUG_MESSAGE_LENGTH, &maxMsgLen);
-
-	std::vector<GLchar> msgData(count * maxMsgLen);
-	std::vector<GLenum> sources(count);
-	std::vector<GLenum> types(count);
-	std::vector<GLenum> severities(count);
-	std::vector<GLuint> ids(count);
-	std::vector<GLsizei> lengths(count);
-
-	GLuint numFound = glGetDebugMessageLog(count, msgData.size(), &sources[0], &types[0], &ids[0], &severities[0], &lengths[0], &msgData[0]);
-
-	sources.resize(numFound);
-	types.resize(numFound);
-	severities.resize(numFound);
-	ids.resize(numFound);
-	lengths.resize(numFound);
-
-	std::vector<std::string> messages;
-	messages.reserve(numFound);
-
-	std::vector<GLchar>::iterator currPos = msgData.begin();
-	for (size_t msg = 0; msg < lengths.size(); ++msg)
-	{
-		messages.push_back(std::string(currPos, currPos + lengths[msg] - 1));
-		currPos = currPos + lengths[msg];
+	std::string errorMsg;
+	errorMsg = "Type: ";
+	switch (type) {
+	case GL_DEBUG_TYPE_ERROR:
+		errorMsg += "ERROR";
+		break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		errorMsg += "DEPRECATED_BEHAVIOR";
+		break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		errorMsg += "UNDEFINED_BEHAVIOR";
+		break;
+	case GL_DEBUG_TYPE_PORTABILITY:
+		errorMsg += "PORTABILITY";
+		break;
+	case GL_DEBUG_TYPE_PERFORMANCE:
+		errorMsg += "PERFORMANCE";
+		break;
+	case GL_DEBUG_TYPE_OTHER:
+		errorMsg += "OTHER";
+		break;
 	}
-	for (size_t i = 0; i < messages.size(); i++) {
-		std::cout << messages.at(i).c_str() << std::endl;
+	errorMsg += "\nMessage: ";
+	errorMsg.append(message);
+
+	errorMsg += "\nId: " + id;
+	errorMsg += "\nSeverity: ";
+	switch (severity) {
+	case GL_DEBUG_SEVERITY_LOW:
+		errorMsg += "LOW";
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		errorMsg += "MEDIUM";
+		break;
+	case GL_DEBUG_SEVERITY_HIGH:
+		errorMsg += "HIGH";
+		break;
 	}
+	std::cout << errorMsg << std::endl; // replace with some logger
 }
+
 
 void engine::window::onWindowResize(GLFWwindow * window, int width, int height)
 {

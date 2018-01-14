@@ -28,7 +28,7 @@ namespace engine
 
 		private:
 			bool initialize();
-			void getDebugMessages(GLuint count);
+			friend static void APIENTRY openglCallbackFunction(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
 			friend static void onWindowResize(GLFWwindow* window, int width, int height);
 			friend static void onKeyChange(GLFWwindow* window, int key, int scancode, int action, int mods);
 			friend static void onMouseMove(GLFWwindow* window, double mx, double my);
