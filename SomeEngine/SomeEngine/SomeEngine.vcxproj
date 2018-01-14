@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\math\Matrix4.h" />
     <ClInclude Include="src\graphics\Color.h" />
     <ClInclude Include="src\core\data\ContentManager.h" />
     <ClInclude Include="src\graphics\shader\Shader.h" />
@@ -129,6 +130,7 @@
     <ClInclude Include="src\math\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\math\Matrix4.cpp" />
     <ClCompile Include="src\graphics\Color.cpp" />
     <ClCompile Include="src\core\data\ContentManager.cpp" />
     <ClCompile Include="src\graphics\shader\Shader.cpp" />

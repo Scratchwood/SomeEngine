@@ -1,4 +1,5 @@
 #include "math\Vector2.h"
+#include "math\Matrix4.h"
 #include "graphics\shader\Shader.h"
 #include "core\data\ContentManager.h"
 #include "window\Window.h"
@@ -18,6 +19,10 @@ void main()
 	Vector2 v2 = Vector2(2, 2);
 	Vector2 v3 = v1 + v2;
 	std::cout << v3 << std::endl;
+
+	Matrix4 mat;
+	mat.scale(2.0f, 2.0f, 2.0f);
+	std::cout << mat << std::endl;
 
 	std::string name = "SomeEngine";
 	Window w = Window(name, 800, 600);
