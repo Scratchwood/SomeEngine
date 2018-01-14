@@ -2,7 +2,7 @@
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
 #include <string>
-
+#include "graphics\Color.h"
 namespace engine::window
  {
 	/// Provides a wrapper for a GLFW Window
@@ -12,6 +12,7 @@ namespace engine::window
 		int m_Width, m_Height;
 		std::string m_Name;
 		GLFWwindow* m_Window;
+		graphics::Color m_ClearColor;
 
 	public:
 		Window(std::string& name, int width, int height);

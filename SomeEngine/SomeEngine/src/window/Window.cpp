@@ -3,7 +3,7 @@
 #include <vector>
 
 engine::window::Window::Window(std::string & name, int width, int height)
-	: m_Name(name), m_Width(width), m_Height(height)
+	: m_Name(name), m_Width(width), m_Height(height), m_ClearColor(0.39f, 0.58f, 0.92f, 1.0f)
 {
 	if (!initialize())
 	{
@@ -63,7 +63,7 @@ bool engine::window::Window::initialize()
 	glDebugMessageCallback(openglCallbackFunction, nullptr);
 	GLuint unusedIds = 0;
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE,	0, &unusedIds, true);
-	glClearColor(0.39f, 0.58f, 0.92f, 1.0f);
+	glClearColor(m_ClearColor.r, m_ClearColor.g, m_ClearColor.b, m_ClearColor.a);
 	return true;
 }
 
