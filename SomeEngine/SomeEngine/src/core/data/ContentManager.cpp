@@ -3,19 +3,25 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 namespace engine::core
 {
 	ContentManager::ContentManager()
 	{
+		m_Shaders = std::vector<engine::graphics::Shader>(MaxShaders);
 	}
 
 
 	ContentManager::~ContentManager()
 	{
+		// I think this should be done..yes, no? maybe!
+		std::for_each(m_Shaders.begin(), m_Shaders.end(), [](engine::graphics::Shader s) {
+			glDeleteProgram(s.getId());
+		});
 	}
 
-	engine::graphics::Shader ContentManager::loadShader(const std::string & fragPath, const std::string & vertPath)
+	ShaderPtr ContentManager::loadShader(const std::string & fragPath, const std::string & vertPath)
 	{
 		GLuint id = glCreateProgram();
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -28,7 +34,7 @@ namespace engine::core
 		GLuint fragmentCompiled = compileShader(fragmentShader, fragmentSourceStr, id);
 		if (vertexCompiled == 0 || fragmentCompiled == 0) 
 		{
-			return engine::graphics::Shader();
+			return nullptr;
 		}
 
 		glLinkProgram(id);
@@ -36,11 +42,12 @@ namespace engine::core
 
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
+		m_Shaders.push_back(engine::graphics::Shader(id, vertexShader, fragmentShader));
 
-		return engine::graphics::Shader(id, vertexShader, fragmentShader);;
+		return std::make_unique<engine::graphics::Shader>(m_Shaders.back());
 	}
 
-	std::string& ContentManager::loadFileToString(const std::string& filepath)
+	std::string ContentManager::loadFileToString(const std::string& filepath)
 	{
 		std::ifstream file;
 		file.open(filepath);

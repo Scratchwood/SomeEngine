@@ -11,6 +11,7 @@ engine::graphics::Shader::Shader(unsigned int id, unsigned int vertexId, unsigne
 	glBindAttribLocation(m_Id, PositionLoc, "position");
 	glBindAttribLocation(m_Id, TextureLoc, "texCoords");
 	glBindAttribLocation(m_Id, NormalLoc, "normal");
+	glBindAttribLocation(m_Id, ColorLoc, "color");
 }
 
 void engine::graphics::Shader::enable() const

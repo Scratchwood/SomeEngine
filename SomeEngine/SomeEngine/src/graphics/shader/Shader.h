@@ -12,6 +12,7 @@ namespace engine::graphics
 #define PositionLoc 0
 #define TextureLoc 1
 #define NormalLoc 2
+#define ColorLoc 3
 		unsigned int m_Id, m_VertexId, m_FragmentId;
 		std::map<std::string, unsigned int> m_LocationMap;
 
@@ -21,6 +22,8 @@ namespace engine::graphics
 
 		void enable() const;
 		void disable() const;
+
+		inline const unsigned int getId() const { return m_Id; };
 
 		void setUniform(const std::string& name, const float value);
 		void setUniform(const std::string& name, const int value);
