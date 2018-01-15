@@ -38,6 +38,9 @@ namespace engine::math {
 		}
 		Matrix4& identity();
 		Matrix4& zero();
+		Matrix4& projection(float fovRadians, float aspect, float near, float far);
+		Matrix4& orthographic(float left, float right, float bottom, float top, float near, float far);
+		
 
 		Matrix4& multiply(Matrix4& multiply);
 
@@ -46,6 +49,9 @@ namespace engine::math {
 		Matrix4& scale(float x, float y, float z);
 		Matrix4& scale(Vector3& scale);
 		Matrix4& scalar(float scalar);
+		Matrix4& rotateX(float radians);
+		Matrix4& rotateY(float radians);
+		Matrix4& rotateZ(float radians);
 		
 		Matrix4& operator*=(Matrix4& multiply);
 		bool operator==(Matrix4& toCompare);

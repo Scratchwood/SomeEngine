@@ -1,5 +1,5 @@
 #include "Matrix4.h"
-
+#include <cmath>
 namespace engine::math
 {
 
@@ -35,6 +35,35 @@ namespace engine::math
 	Matrix4& Matrix4::zero()
 	{
 		memset(&m_Values, 0, sizeof(float) * 16);
+		return *this;
+	}
+
+	Matrix4& Matrix4::projection(float fovRadians, float aspect, float near, float far)
+	{
+		float f = tanf(M_PI_2 * 0.5f - 0.5f * fovRadians);
+		float rangeInverted = 1.0f / (near - far);
+		m_Values = {
+			f/aspect, 0, 0, 0,
+			0, f, 0, 0,
+			0, 0, (near + far) * rangeInverted, -1,
+			0, 0, near * far * rangeInverted * 2.f, 0
+		};
+		return *this;
+	}
+
+	Matrix4& Matrix4::orthographic(float left, float right, float bottom, float top, float near, float far)
+	{
+		m_Values = {
+			2.f / (right - left), 0, 0, 0,
+			0, 2.f / (top - bottom), 0, 0,
+			0, 0, 2.f / (near - far), 0,
+
+			// last row offset this way for better readability.
+			(left + right) / (left - right),
+			(bottom + top) / (bottom - top),
+			(near + far) / (near - far),
+			1,
+		};
 		return *this;
 	}
 
@@ -199,6 +228,130 @@ namespace engine::math
 		m_Values[M31] *= scalar;
 		m_Values[M32] *= scalar;
 		m_Values[M33] *= scalar;
+		return *this;
+	}
+
+	Matrix4& Matrix4::rotateX(float radians)
+	{
+		const float & a00 = m_Values[M00];
+		const float & a01 = m_Values[M01];
+		const float & a02 = m_Values[M02];
+		const float & a03 = m_Values[M03];
+		const float & a10 = m_Values[M10];
+		const float & a11 = m_Values[M11];
+		const float & a12 = m_Values[M12];
+		const float & a13 = m_Values[M13];
+		const float & a20 = m_Values[M20];
+		const float & a21 = m_Values[M21];
+		const float & a22 = m_Values[M22];
+		const float & a23 = m_Values[M23];
+		const float & a30 = m_Values[M30];
+		const float & a31 = m_Values[M31];
+		const float & a32 = m_Values[M32];
+		const float & a33 = m_Values[M33];
+		const float c = cosf(radians);
+		const float s = sinf(radians);
+		m_Values = {
+			(a00),
+			(a01 * c) + (a02 * -s),
+			(a01 * s) + (a02 * c),
+			(a03),
+			(a10),
+			(a11 * c) + (a12 * -s),
+			(a11 * s) + (a12 * c),
+			(a13),
+			(a20),
+			(a21 * c) + (a22 * -s),
+			(a21 * s) + (a22 * c),
+			(a23),
+			(a30),
+			(a31 * c) + (a32 * -s),
+			(a31 * s) + (a32 * c),
+			(a33)
+		};
+		return *this;
+	}
+
+	Matrix4& Matrix4::rotateY(float radians)
+	{
+		const float & a00 = m_Values[M00];
+		const float & a01 = m_Values[M01];
+		const float & a02 = m_Values[M02];
+		const float & a03 = m_Values[M03];
+		const float & a10 = m_Values[M10];
+		const float & a11 = m_Values[M11];
+		const float & a12 = m_Values[M12];
+		const float & a13 = m_Values[M13];
+		const float & a20 = m_Values[M20];
+		const float & a21 = m_Values[M21];
+		const float & a22 = m_Values[M22];
+		const float & a23 = m_Values[M23];
+		const float & a30 = m_Values[M30];
+		const float & a31 = m_Values[M31];
+		const float & a32 = m_Values[M32];
+		const float & a33 = m_Values[M33];
+		const float c = cosf(radians);
+		const float s = sinf(radians);
+		m_Values = {
+			(a00 * c) + (a02 * s),
+			(a01),
+			(a00 * -s) + (a02 * c),
+			(a03),
+			(a10 * c) + (a12 * s),
+			(a11),
+			(a10 * -s) + (a12 * c),
+			(a13),
+			(a20 * c) + (a22 * s),
+			(a21),
+			(a20 * -s) + (a22 * c),
+			(a23),
+			(a30 * c) + (a32 * s),
+			(a31),
+			(a30 * -s) + (a32 * c),
+			(a33)
+		};
+		return *this;
+	}
+
+	Matrix4& Matrix4::rotateZ(float radians)
+	{
+		
+		const float & a00 = m_Values[M00];
+		const float & a01 = m_Values[M01];
+		const float & a02 = m_Values[M02];
+		const float & a03 = m_Values[M03];
+		const float & a10 = m_Values[M10];
+		const float & a11 = m_Values[M11];
+		const float & a12 = m_Values[M12];
+		const float & a13 = m_Values[M13];
+		const float & a20 = m_Values[M20];
+		const float & a21 = m_Values[M21];
+		const float & a22 = m_Values[M22];
+		const float & a23 = m_Values[M23];
+		const float & a30 = m_Values[M30];
+		const float & a31 = m_Values[M31];
+		const float & a32 = m_Values[M32];
+		const float & a33 = m_Values[M33];
+		const float c = cosf(radians);
+		const float s = sinf(radians);
+		m_Values = {
+			(a00 * c) + (a01 * -s),
+			(a00 * s) + (a01 * c),
+			(a02),
+			(a03),
+			(a10 * c) + (a11 * -s),
+			(a10 * s) + (a11 * c),
+			(a12),
+			(a13),
+			(a20 * c) + (a21 * -s),
+			(a20 * s) + (a21 * c),
+			(a22),
+			(a23),
+			(a30 * c) + (a31 * -s),
+			(a30 * s) + (a31 * c),
+			(a32),
+			(a33)
+		};
 		return *this;
 	}
 
