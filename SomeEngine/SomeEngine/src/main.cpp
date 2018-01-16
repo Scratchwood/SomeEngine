@@ -2,6 +2,7 @@
 #include "math\Matrix4.h"
 #include "graphics\shader\Shader.h"
 #include "core\data\ContentManager.h"
+#include "graphics\primitives\Quad.h"
 #include "window\Window.h"
 #include <iostream>
 #include <string>
@@ -29,9 +30,35 @@ void main()
 	ContentManager cm = ContentManager();
 	auto shader = cm.load<Shader>("resources/shaders/basic.frag", "resources/shaders/basic.vert");
 	auto string = cm.load<std::string>("resources/shaders/basic.frag");
+
+	Quad quad = Quad(Vector3(0.5f, 0.5f, 0.0f), Vector3(0.5f, -0.5f, 0.0f), Vector3(-0.5f, -0.5f, 0.0f), Vector3(-0.5f, 0.5f, 0.0f));
+
 	while (!w.isClosed())
 	{
 		w.clear();
+		shader->enable();
+
+		glBindVertexArray(quad.getMesh().vao);
+		glBindBuffer(GL_ARRAY_BUFFER, quad.getMesh().vbo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad.getMesh().ebo);
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+		glEnableVertexAttribArray(2);
+		glEnableVertexAttribArray(3);
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
+		glDisableVertexAttribArray(3);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		glBindVertexArray(0);
+
+		shader->disable();
 		w.update();
 	}
 }
