@@ -9,31 +9,37 @@ namespace engine::math
 		Vector3();
 		Vector3(const float x, const float y, const float z);
 		Vector3(const Vector3& v);
+		static inline const Vector3& Forward()
+		{
+			static const Vector3 v3(0, 0, 1);
+			return v3;
+		}
+		static inline const Vector3& Up()
+		{
+			static const Vector3 v3(0, 1, 0);
+			return v3;
+		}
+		static inline const Vector3& Right()
+		{
+			static const Vector3 v3(1, 0, 0);
+			return v3;
+		}
+		static inline const Vector3& Back()
+		{
+			static const Vector3 v3 = Forward() * -1;
+			return v3;
+		}
+		static inline const Vector3& Down()
+		{
+			static const Vector3 v3 = Up() * -1;
+			return v3;
+		}
+		static inline const Vector3& Left()
+		{
+			static const Vector3 v3 = Right() * -1;
+			return v3;
+		}
 
-		static inline Vector3 FORWARD()
-		{
-			return Vector3(0, 0, 1);
-		}
-		static inline Vector3 BACK()
-		{
-			return Vector3(0, 0, -1);
-		}
-		static inline Vector3 UP()
-		{
-			return Vector3(0, 1, 0);
-		}
-		static inline Vector3 DOWN()
-		{
-			return Vector3(0, -1, 0);
-		}
-		static inline Vector3 LEFT()
-		{
-			return Vector3(-1, 0, 0);
-		}
-		static inline Vector3 RIGHT()
-		{
-			return Vector3(1, 0, 0);
-		}
 
 		float length();
 		float dot(const Vector3& right) const;
