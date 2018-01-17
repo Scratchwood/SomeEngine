@@ -34,7 +34,7 @@ engine::graphics::Quad::Quad(engine::math::Vector3 topRight, engine::math::Vecto
 	vertex4.color = engine::math::Vector3(1, 1, 1);
 	
 	vertices = { vertex1, vertex2, vertex3, vertex4 };
-	std::vector<GLuint> indices = { 0, 1, 3, 1, 2, 3 };
+	std::vector<GLuint> indices = { 0, 3, 1, 3, 2, 1 };
 	m_Mesh = Mesh(indices, vertices);
 }
 
