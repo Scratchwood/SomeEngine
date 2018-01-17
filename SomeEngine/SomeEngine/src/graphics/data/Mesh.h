@@ -31,9 +31,16 @@ namespace engine::graphics
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 
+			glEnableVertexAttribArray(0);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)0);
+
+			glEnableVertexAttribArray(1);
 			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)offsetof(VertexTextureNormalColor, VertexTextureNormalColor::texCoords));
+
+			glEnableVertexAttribArray(2);
 			glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)offsetof(VertexTextureNormalColor, VertexTextureNormalColor::normal));
+
+			glEnableVertexAttribArray(3);
 			glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)offsetof(VertexTextureNormalColor, VertexTextureNormalColor::color));
 
 			glBindVertexArray(0);

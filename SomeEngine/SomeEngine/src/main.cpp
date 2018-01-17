@@ -32,7 +32,9 @@ void main()
 	// auto string = cm.load<std::string>("resources/shaders/basic.frag");
 
 	Quad quad = Quad(Vector3(0.5f, 0.5f, 0.0f), Vector3(0.5f, -0.5f, 0.0f), Vector3(-0.5f, -0.5f, 0.0f), Vector3(-0.5f, 0.5f, 0.0f));
+	// #define EMILTRAMS
 
+#ifdef EMILTRAMS
 	shader->enable();
 	GLuint indices[6]{
 		0, 3, 1,
@@ -67,21 +69,22 @@ void main()
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	}
 	glBindVertexArray(NULL);
-
+#endif
 
 	while (!w.isClosed())
 	{
 		w.clear();
 		shader->enable();
-
+#ifdef EMILTRAMS
 		// glBindBuffer(GL_ARRAY_BUFFER, m_GLBuffers[BUFFER_INSTANCE]);
 		// glBufferSubData(GL_ARRAY_BUFFER, 0, m_Count * ((3 * 3) + 4 + 1) * sizeof(GL_FLOAT), m_InstanceDataArray);
 		glBindVertexArray(vao);
 		//draw 3 vertices as triangles
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 		glBindVertexArray(NULL);
+#endif
 
-		/*glBindVertexArray(quad.getMesh().vao);
+		glBindVertexArray(quad.getMesh().vao);
 		glBindBuffer(GL_ARRAY_BUFFER, quad.getMesh().vbo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad.getMesh().ebo);
 		glEnableVertexAttribArray(0);
@@ -99,7 +102,7 @@ void main()
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-		glBindVertexArray(0);*/
+		glBindVertexArray(0);
 
 		shader->disable();
 		w.update();
