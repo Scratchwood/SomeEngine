@@ -61,7 +61,7 @@ namespace engine::math
 			// last row offset this way for better readability.
 			(left + right) / (left - right),
 			(bottom + top) / (bottom - top),
-			(near + far) / (near - far),
+			(near + far) / (near - far), //wherever you are
 			1,
 		};
 		return *this;

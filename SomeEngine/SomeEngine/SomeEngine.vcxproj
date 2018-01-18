@@ -120,9 +120,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\camera\CameraFree.h" />
     <ClInclude Include="src\graphics\data\Mesh.h" />
     <ClInclude Include="src\graphics\data\VertexTextureNormalColor.h" />
     <ClInclude Include="src\graphics\primitives\Quad.h" />
+    <ClInclude Include="src\math\MathsUtil.h" />
     <ClInclude Include="src\math\Matrix3.cpp" />
     <ClInclude Include="src\math\Matrix4.h" />
     <ClInclude Include="src\graphics\Color.h" />
@@ -134,6 +136,7 @@
     <ClInclude Include="src\math\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\camera\CameraFree.cpp" />
     <ClCompile Include="src\graphics\primitives\Quad.cpp" />
     <ClCompile Include="src\math\Matrix3.h" />
     <ClCompile Include="src\math\Matrix4.cpp" />
