@@ -32,7 +32,7 @@ namespace engine::math {
 		Matrix4(const std::initializer_list<float> list);
 		~Matrix4();
 
-		inline float* getArray()
+		inline const float* getArray() const
 		{
 			return m_Values.data();
 		}
@@ -40,7 +40,7 @@ namespace engine::math {
 		Matrix4& zero();
 		Matrix4& projection(float fovRadians, float aspect, float near, float far);
 		Matrix4& orthographic(float left, float right, float bottom, float top, float near, float far);
-		
+		Matrix4& lookAt(const Vector3& cameraPosition, const Vector3& cameraTarget, const Vector3& cameraUp);
 
 		Matrix4& multiply(Matrix4& multiply);
 

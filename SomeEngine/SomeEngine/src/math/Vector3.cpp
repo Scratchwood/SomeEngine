@@ -27,6 +27,15 @@ namespace engine::math
 		return (x * right.x) + (y * right.y) + (x * right.z);
 	}
 
+	Vector3 Vector3::cross(Vector3 & right) const
+	{
+		Vector3 result;
+		result.x = y * right.z - z * right.y;
+		result.y = z * right.x - x * right.z;
+		result.z = x * right.y - y * right.x;
+		return result;
+	}
+
 	void Vector3::normalize()
 	{
 		float l = length();

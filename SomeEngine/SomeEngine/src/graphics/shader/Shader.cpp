@@ -32,7 +32,7 @@ namespace engine::graphics
 
 
 		glBindAttribLocation(m_Id, PositionLoc, "position");
-		glBindAttribLocation(m_Id, TextureLoc, "texCoords");
+		glBindAttribLocation(m_Id, TextureLoc, "uv");
 		glBindAttribLocation(m_Id, NormalLoc, "normal");
 		glBindAttribLocation(m_Id, ColorLoc, "color");
 	}
@@ -42,7 +42,7 @@ namespace engine::graphics
 		: m_Id(id), m_VertexId(vertexId), m_FragmentId(fragmentId)
 	{
 		glBindAttribLocation(m_Id, PositionLoc, "position");
-		glBindAttribLocation(m_Id, TextureLoc, "texCoords");
+		glBindAttribLocation(m_Id, TextureLoc, "uv");
 		glBindAttribLocation(m_Id, NormalLoc, "normal");
 		glBindAttribLocation(m_Id, ColorLoc, "color");
 	}
@@ -75,6 +75,11 @@ namespace engine::graphics
 	void Shader::setUniform(const std::string & name, const unsigned int count, const int * value)
 	{
 		glUniform1iv(getLocation(name), count, value);
+	}
+
+	void Shader::setUniform(const std::string & name, const engine::math::Matrix4 & value)
+	{
+		glUniformMatrix4fv(getLocation(name), 1, GL_FALSE, value.getArray());
 	}
 
 	void Shader::setUniform(const std::string & name, const engine::math::Vector2 & value)

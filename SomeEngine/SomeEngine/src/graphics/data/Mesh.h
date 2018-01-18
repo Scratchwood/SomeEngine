@@ -35,7 +35,7 @@ namespace engine::graphics
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)0);
 
 			glEnableVertexAttribArray(1);
-			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)offsetof(VertexTextureNormalColor, VertexTextureNormalColor::texCoords));
+			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)offsetof(VertexTextureNormalColor, VertexTextureNormalColor::uv));
 
 			glEnableVertexAttribArray(2);
 			glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTextureNormalColor), (const GLvoid*)offsetof(VertexTextureNormalColor, VertexTextureNormalColor::normal));

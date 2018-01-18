@@ -2,6 +2,7 @@
 #include "math\Vector2.h"
 #include "math\Vector3.h"
 #include "math\Vector4.h"
+#include "math\Matrix4.h"
 #include <map>
 #include <string>
 namespace engine::graphics
@@ -30,7 +31,7 @@ namespace engine::graphics
 		void setUniform(const std::string& name, const int value);
 		void setUniform(const std::string& name, const unsigned int count, const float* value);
 		void setUniform(const std::string& name, const unsigned int count, const int* value);
-		//void setUniform(const std::string& name, const maths::Matrix4& value);
+		void setUniform(const std::string& name, const engine::math::Matrix4& value);
 		void setUniform(const std::string& name, const engine::math::Vector2& value);
 		void setUniform(const std::string& name, const engine::math::Vector3& value);
 		void setUniform(const std::string& name, const engine::math::Vector4& value);

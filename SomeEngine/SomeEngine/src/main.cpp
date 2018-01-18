@@ -33,6 +33,11 @@ void main()
 
 	Quad quad = Quad(Vector3(0.5f, 0.5f, 0.0f), Vector3(0.5f, -0.5f, 0.0f), Vector3(-0.5f, -0.5f, 0.0f), Vector3(-0.5f, 0.5f, 0.0f));
 	// #define EMILTRAMS
+	double d = M_PI_2;
+	float f = static_cast<float>(M_PI_2);
+	
+	std::cout << "math_define: " << M_PI_2 << std::endl;
+	std::cout << "float: " << static_cast<float>(M_PI_2) << std::endl;
 
 #ifdef EMILTRAMS
 	shader->enable();
@@ -87,17 +92,8 @@ void main()
 		glBindVertexArray(quad.getMesh().vao);
 		glBindBuffer(GL_ARRAY_BUFFER, quad.getMesh().vbo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quad.getMesh().ebo);
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		glEnableVertexAttribArray(2);
-		glEnableVertexAttribArray(3);
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
-		glDisableVertexAttribArray(3);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

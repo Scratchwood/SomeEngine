@@ -43,6 +43,7 @@ namespace engine::math
 
 		float length();
 		float dot(const Vector3& right) const;
+		Vector3 cross(Vector3& right) const;
 
 		void normalize();
 

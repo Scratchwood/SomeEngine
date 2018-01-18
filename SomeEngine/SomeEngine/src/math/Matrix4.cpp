@@ -40,7 +40,7 @@ namespace engine::math
 
 	Matrix4& Matrix4::projection(float fovRadians, float aspect, float near, float far)
 	{
-		float f = tanf(M_PI_2 * 0.5f - 0.5f * fovRadians);
+		float f = static_cast<float>(tan((M_PI_2) * 0.5f - 0.5f * fovRadians));
 		float rangeInverted = 1.0f / (near - far);
 		m_Values = {
 			f/aspect, 0, 0, 0,
@@ -63,6 +63,29 @@ namespace engine::math
 			(bottom + top) / (bottom - top),
 			(near + far) / (near - far),
 			1,
+		};
+		return *this;
+	}
+
+	Matrix4 & Matrix4::lookAt(const Vector3 & cameraPosition, const Vector3 & cameraTarget, const Vector3 & cameraUp)
+	{
+		Vector3 X, Y, Z;
+
+		Z = cameraPosition - cameraTarget;
+		Z.normalize();
+
+		X = cameraUp.cross(Z);
+		Y = Z.cross(X);
+
+		X.normalize();
+		Y.normalize();
+		
+		// this might be turned around..
+		m_Values = {
+			X.x,					Y.x,					Z.x,					0.0f,
+			X.y,					Y.y,					Z.y,					0.0f,
+			X.z,					Y.z,					Z.z,					0.0f,
+			-X.dot(cameraPosition),	-Y.dot(cameraPosition),	-Z.dot(cameraPosition),	1.0f
 		};
 		return *this;
 	}

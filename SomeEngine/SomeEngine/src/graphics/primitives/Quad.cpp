@@ -11,25 +11,25 @@ engine::graphics::Quad::Quad(engine::math::Vector3 topRight, engine::math::Vecto
 
 	VertexTextureNormalColor vertex1;
 	vertex1.vertex = topRight;
-	vertex1.texCoords = engine::math::Vector2(0, 0);
+	vertex1.uv = engine::math::Vector2(0, 0);
 	vertex1.normal = engine::math::Vector3(0, 0, -1);
 	vertex1.color = engine::math::Vector3(1, 0, 1);
 
 	VertexTextureNormalColor vertex2;
 	vertex2.vertex = bottomRight;
-	vertex2.texCoords = engine::math::Vector2(0, 0);
+	vertex2.uv = engine::math::Vector2(0, 0);
 	vertex2.normal = engine::math::Vector3(0, 0, -1);
 	vertex2.color = engine::math::Vector3(1, 1, 0);
 
 	VertexTextureNormalColor vertex3;
 	vertex3.vertex = bottomLeft;
-	vertex3.texCoords = engine::math::Vector2(0, 0);
+	vertex3.uv = engine::math::Vector2(0, 0);
 	vertex3.normal = engine::math::Vector3(0, 0, -1);
 	vertex3.color = engine::math::Vector3(1, 0, 0);
 
 	VertexTextureNormalColor vertex4;
 	vertex4.vertex = topLeft;
-	vertex4.texCoords = engine::math::Vector2(0, 0);
+	vertex4.uv = engine::math::Vector2(0, 0);
 	vertex4.normal = engine::math::Vector3(0, 0, -1);
 	vertex4.color = engine::math::Vector3(1, 1, 1);
 	

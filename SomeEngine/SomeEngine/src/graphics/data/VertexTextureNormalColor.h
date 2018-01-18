@@ -8,7 +8,7 @@ namespace engine::graphics
 	struct VertexTextureNormalColor
 	{
 		engine::math::Vector3 vertex;
-		engine::math::Vector2 texCoords;
+		engine::math::Vector2 uv;
 		engine::math::Vector3 normal;
 		engine::math::Vector3 color;
 	};
